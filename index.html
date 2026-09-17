@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Quiz de Estudo</title>
+<style>
+  :root{
+    --bg:#0a0f0d; --panel:#0f1714; --panel2:#12201b;
+    --border:#1e3a2f; --text:#d7f5e6; --muted:#7fae97;
+    --accent:#22c55e; --accent-dim:#16351f;
+    --wrong:#ef4444; --wrong-dim:#3a1414; --right:#22c55e; --right-dim:#12351f;
+  }
+  *{box-sizing:border-box}
+  body{
+    margin:0; font-family:ui-sans-serif,system-ui,"Segoe UI",Roboto,Arial,sans-serif;
+    background:var(--bg); color:var(--text); min-height:100vh;
+  }
+  #matrix{position:fixed;inset:0;z-index:0;opacity:.12;pointer-events:none}
+  .wrap{position:relative;z-index:1;max-width:820px;margin:0 auto;padding:24px 16px 64px}
+  header{text-align:center;margin-bottom:20px}
+  h1{margin:0 0 4px;font-size:1.6rem;letter-spacing:.5px}
+  .sub{color:var(--muted);font-size:.9rem}
+  .card{
+    background:var(--panel);border:1px solid var(--border);border-radius:14px;
+    padding:22px;box-shadow:0 8px 30px rgba(0,0,0,.35)
+  }
+  .bar{height:8px;background:var(--panel2);border-radius:99px;overflow:hidden;margin-bottom:16px;border:1px solid var(--border)}
+  .bar > i{display:block;height:100%;background:linear-gradient(90deg,#16a34a,#22c55e);width:0;transition:width .3s}
+  .meta{display:flex;justify-content:space-between;color:var(--muted);font-size:.85rem;margin-bottom:10px}
+  .qnum{color:var(--accent);font-weight:700}
+  .tema{display:inline-block;background:var(--accent-dim);color:var(--accent);border:1px solid var(--border);
+    border-radius:99px;padding:4px 12px;font-size:.78rem;font-weight:600;margin-bottom:12px}
+  .enunciado{font-size:1.08rem;line-height:1.5;margin:6px 0 6px;white-space:pre-wrap}
+  .instrucao{color:var(--muted);font-size:.9rem;margin-bottom:14px}
+  .alts{display:flex;flex-direction:column;gap:10px}
+  .alt{
+    display:flex;gap:12px;align-items:flex-start;text-align:left;width:100%;
+    background:var(--panel2);border:1px solid var(--border);color:var(--text);
+    padding:14px 16px;border-radius:10px;cursor:pointer;font-size:1rem;line-height:1.4;
+    transition:border-color .15s,background .15s,transform .05s
+  }
+  .alt:hover:not(:disabled){border-color:var(--accent);transform:translateY(-1px)}
+  .alt:disabled{cursor:default}
+  .alt .letra{
+    flex:0 0 28px;height:28px;border-radius:7px;display:grid;place-items:center;
+    background:var(--accent-dim);color:var(--accent);font-weight:700;font-size:.9rem
+  }
+  .alt.correct{border-color:var(--right);background:var(--right-dim)}
+  .alt.correct .letra{background:var(--right);color:#052e12}
+  .alt.wrong{border-color:var(--wrong);background:var(--wrong-dim)}
+  .alt.wrong .letra{background:var(--wrong);color:#3a0a0a}
+  .coment{
+    margin-top:12px;padding:12px 14px;border-radius:10px;font-size:.92rem;line-height:1.5;
+    border:1px solid var(--border);background:#0b1512;color:var(--muted);display:none;white-space:pre-wrap
+  }
+  .coment.show{display:block}
+  .coment b{color:var(--text)}
+  .nav{display:flex;justify-content:space-between;gap:10px;margin-top:18px}
+  button.btn{
+    background:var(--panel2);border:1px solid var(--border);color:var(--text);
+    padding:11px 18px;border-radius:10px;cursor:pointer;font-size:.95rem;font-weight:600
+  }
+  button.btn:hover:not(:disabled){border-color:var(--accent)}
+  button.btn:disabled{opacity:.4;cursor:not-allowed}
+  button.primary{background:var(--accent);color:#052e12;border-color:var(--accent)}
+  .modes{display:flex;gap:10px;justify-content:center;margin:18px 0}
+  .modes button{flex:1;max-width:220px}
+  .center{text-align:center}
+  .big{font-size:2.4rem;font-weight:800;margin:8px 0}
+  .score-good{color:var(--right)} .score-bad{color:var(--wrong)}
+  .stats{display:flex;gap:12px;justify-content:center;margin:16px 0;flex-wrap:wrap}
+  .stat{background:var(--panel2);border:1px solid var(--border);border-radius:10px;padding:12px 18px;min-width:110px}
+  .stat .n{font-size:1.5rem;font-weight:800}
+  .stat .l{color:var(--muted);font-size:.8rem}
+  .err{color:#fca5a5;line-height:1.6}
+  code{background:#0b1512;padding:2px 6px;border-radius:5px;border:1px solid var(--border)}
+</style>
+</head>
+<body>
+<canvas id="matrix"></canvas>
+<div class="wrap">
+  <header>
+    <h1 id="title">Quiz de Estudo</h1>
+    <div class="sub" id="subtitle">Prepare-se para a prova</div>
+  </header>
+  <div id="app" class="card"></div>
+</div>
+
+<script>
+const JSON_URL = "./QUESTOES.json";
+let questions = [];
+let order = [];
+let idx = 0;
+let answers = {};   // idx -> {letra, correta}
+let started = false;
+
+const app = document.getElementById("app");
+
+function shuffle(a){
+  a = a.slice();
+  for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]];}
+  return a;
+}
+
+async function load(){
+  try{
+    const res = await fetch(JSON_URL, {cache:"no-store"});
+    if(!res.ok) throw new Error("HTTP "+res.status);
+    const data = await res.json();
+    questions = Array.isArray(data) ? data : (data.questoes || data.questions || []);
+    if(!questions.length) throw new Error("JSON vazio ou sem questões.");
+    renderStart();
+  }catch(e){
+    app.innerHTML = `
+      <div class="err">
+        <b>Não foi possível carregar as questões.</b><br><br>
+        ${e.message}<br><br>
+        Se você abriu o arquivo direto (file://), o navegador bloqueia o carregamento do JSON.
+        Publique no GitHub Pages ou rode um servidor local:
+        <br><br><code>python -m http.server</code><br>
+        e acesse <code>http://localhost:8000</code>.
+      </div>`;
+  }
+}
+
+function renderStart(){
+  document.getElementById("subtitle").textContent = questions.length + " questões disponíveis";
+  app.innerHTML = `
+    <div class="center">
+      <p>Escolha o modo do quiz:</p>
+      <div class="modes">
+        <button class="btn primary" id="mShuffle">Embaralhado</button>
+        <button class="btn" id="mOrder">Ordem original</button>
+      </div>
+      <div class="sub">Você recebe feedback e o comentário logo após responder cada questão.</div>
+    </div>`;
+  document.getElementById("mShuffle").onclick = ()=>start(true);
+  document.getElementById("mOrder").onclick = ()=>start(false);
+}
+
+function start(shuffled){
+  order = shuffled ? shuffle(questions.map((_,i)=>i)) : questions.map((_,i)=>i);
+  idx = 0; answers = {}; started = true;
+  renderQuestion();
+}
+
+function renderQuestion(){
+  const q = questions[order[idx]];
+  const total = order.length;
+  const prev = answers[idx];
+  const alts = (q.alternativas||[]).map(a=>{
+    let cls="alt";
+    if(prev){
+      if(a.correta) cls+=" correct";
+      else if(a.letra===prev.letra) cls+=" wrong";
+    }
+    return `<button class="${cls}" data-letra="${a.letra}" ${prev?"disabled":""}>
+      <span class="letra">${a.letra}</span><span>${escapeHtml(a.texto)}</span>
+    </button>`;
+  }).join("");
+
+  // comentário da alternativa escolhida (ou da correta)
+  let coment = "";
+  if(prev){
+    const chosen = (q.alternativas||[]).find(a=>a.letra===prev.letra);
+    const correct = (q.alternativas||[]).find(a=>a.correta);
+    const msg = (chosen && chosen.comentario_da_resposta) || (correct && correct.comentario_da_resposta) || "";
+    const head = prev.correta ? '<b class="score-good">✔ Você acertou!</b>' :
+      `<b class="score-bad">✘ Você errou.</b> A resposta correta é <b>${correct?correct.letra:"?"}</b>.`;
+    coment = `<div class="coment show">${head}${msg?"<br><br>"+escapeHtml(msg):""}</div>`;
+  }
+
+  app.innerHTML = `
+    <div class="bar"><i style="width:${(idx/total)*100}%"></i></div>
+    <div class="meta"><span class="qnum">Questão ${idx+1} de ${total}</span><span>Acertos: ${countCorrect()}</span></div>
+    ${q.tema?`<div class="tema">${escapeHtml(q.tema)}</div>`:""}
+    <div class="enunciado">${escapeHtml(q.enunciado||"")}</div>
+    <div class="instrucao">${escapeHtml(q.instrucao||"Selecione a resposta:")}</div>
+    <div class="alts">${alts}</div>
+    ${coment}
+    <div class="nav">
+      <button class="btn" id="prev" ${idx===0?"disabled":""}>← Anterior</button>
+      <button class="btn primary" id="next">${idx===total-1?"Ver resultado":"Próxima →"}</button>
+    </div>`;
+
+  if(!prev){
+    app.querySelectorAll(".alt").forEach(b=>{
+      b.onclick = ()=>answer(b.dataset.letra);
+    });
+  }
+  document.getElementById("prev").onclick = ()=>{ if(idx>0){idx--;renderQuestion();} };
+  document.getElementById("next").onclick = ()=>{
+    if(idx===total-1) renderResult();
+    else { idx++; renderQuestion(); }
+  };
+}
+
+function answer(letra){
+  const q = questions[order[idx]];
+  const alt = (q.alternativas||[]).find(a=>a.letra===letra);
+  answers[idx] = { letra, correta: !!(alt && alt.correta) };
+  renderQuestion();
+}
+
+function countCorrect(){
+  return Object.values(answers).filter(a=>a.correta).length;
+}
+
+function renderResult(){
+  const total = order.length;
+  const correct = countCorrect();
+  const answered = Object.keys(answers).length;
+  const pct = total ? Math.round((correct/total)*100) : 0;
+  const cls = pct>=60 ? "score-good" : "score-bad";
+  app.innerHTML = `
+    <div class="center">
+      <h2>Resultado</h2>
+      <div class="big ${cls}">${pct}%</div>
+      <div class="stats">
+        <div class="stat"><div class="n score-good">${correct}</div><div class="l">Acertos</div></div>
+        <div class="stat"><div class="n score-bad">${answered-correct}</div><div class="l">Erros</div></div>
+        <div class="stat"><div class="n">${total-answered}</div><div class="l">Em branco</div></div>
+      </div>
+      <div class="modes">
+        <button class="btn" id="review">Revisar questões</button>
+        <button class="btn primary" id="again">Refazer quiz</button>
+      </div>
+    </div>`;
+  document.getElementById("again").onclick = renderStart;
+  document.getElementById("review").onclick = ()=>{ idx=0; renderQuestion(); };
+}
+
+function escapeHtml(s){
+  return String(s).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+}
+
+// Matrix background
+(function(){
+  const c=document.getElementById("matrix"), x=c.getContext("2d");
+  let cols, drops;
+  function resize(){c.width=innerWidth;c.height=innerHeight;cols=Math.floor(c.width/14);drops=Array(cols).fill(1);}
+  resize(); addEventListener("resize",resize);
+  const chars="01<>{}[]#$%&*ABCDEF".split("");
+  setInterval(()=>{
+    x.fillStyle="rgba(10,15,13,0.08)";x.fillRect(0,0,c.width,c.height);
+    x.fillStyle="#22c55e";x.font="14px monospace";
+    for(let i=0;i<drops.length;i++){
+      const t=chars[Math.floor(Math.random()*chars.length)];
+      x.fillText(t,i*14,drops[i]*14);
+      if(drops[i]*14>c.height && Math.random()>0.975) drops[i]=0;
+      drops[i]++;
+    }
+  },60);
+})();
+
+load();
+</script>
+</body>
+</html>
