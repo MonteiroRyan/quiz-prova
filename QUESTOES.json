@@ -1,0 +1,457 @@
+[
+  {
+    "numero_questao": "1",
+    "tema": "Aplicação das técnicas de agrupamento de dados",
+    "enunciado": "As técnicas de agrupamento permitem que dados não rotulados possam ser classificados em grupos, também conhecidos como clusters, com base em suas características individuais. Esses métodos, entretanto, são sensíveis aos dados de entrada.\n\nCorrespondem a estratégias para melhoria dos agrupamentos:",
+    "instrucao": "Selecione a resposta:",
+    "alternativas": [
+      { "letra": "A", "texto": "Visualização sistemática de variáveis e seleção de atributos.", "correta": true, "comentario_da_resposta": "Visualizar as variáveis e selecionar bons atributos melhora a qualidade dos agrupamentos, pois o k-means é sensível aos dados de entrada." },
+      { "letra": "B", "texto": "Visualização sistemática de variáveis e comparação de rótulos.", "correta": false, "comentario_da_resposta": "" },
+      { "letra": "C", "texto": "Comparação de rótulos e seleção de atributos.", "correta": false, "comentario_da_resposta": "" },
+      { "letra": "D", "texto": "Seleção de atributos e aplicação de algoritmos supervisionados.", "correta": false, "comentario_da_resposta": "" },
+      { "letra": "E", "texto": "Aplicação de algoritmos supervisionados e visualização sistemática de variáveis.", "correta": false, "comentario_da_resposta": "" }
+    ]
+  },
+  {
+    "numero_questao": "2",
+    "tema": "Aplicação das técnicas de agrupamento de dados",
+    "enunciado": "Para executar os agrupamentos de dados, o R fornece a função kmeans(), que recebe como entrada o conjunto de dados que será usado e a quantidade de centroides, isto é, a quantidade de grupos que se deseja prever.\n\nQuais são os requisitos mínimos obrigatórios para a função k-means?",
+    "instrucao": "Selecione a resposta:",
+    "alternativas": [
+      { "letra": "A", "texto": "O conjunto de dados e o número de centros.", "correta": true, "comentario_da_resposta": "O k-means exige apenas o conjunto de dados e o número de centros (k); os demais parâmetros são opcionais." },
+      { "letra": "B", "texto": "O conjunto de dados e o valor máximo de iterações.", "correta": false, "comentario_da_resposta": "" },
+      { "letra": "C", "texto": "O conjunto de dados, o número de centros e o valor máximo de iterações.", "correta": false, "comentario_da_resposta": "" },
+      { "letra": "D", "texto": "O conjunto de dados, o número de centros, o valor máximo de iterações e o número de atribuições randômicas.", "correta": false, "comentario_da_resposta": "" },
+      { "letra": "E", "texto": "Apenas o conjunto de dados.", "correta": false, "comentario_da_resposta": "" }
+    ]
+  },
+  {
+    "numero_questao": "3",
+    "tema": "Aplicação das técnicas de agrupamento de dados",
+    "enunciado": "Em um agrupamento de um conjunto de dados usando k-means (k = 2), um determinado ponto visualmente alocado próximo ao primeiro cluster foi classificado como membro do segundo cluster.\n\nQual alternativa melhor justifica esse comportamento?",
+    "instrucao": "Selecione a resposta:",
+    "alternativas": [
+      { "letra": "A", "texto": "Possivelmente, o número de iterações máximas definido não foi suficiente para classificá-lo no primeiro cluster.", "correta": true, "comentario_da_resposta": "Com poucas iterações o algoritmo pode não convergir, deixando pontos alocados em um cluster que visualmente não seria o mais próximo." },
+      { "letra": "B", "texto": "Há um possível viés nos dados, uma vez que k-means deveria classificar com base nos pontos mais próximos.", "correta": false, "comentario_da_resposta": "" },
+      { "letra": "C", "texto": "A quantidade de clusters usada no argumento de entrada não foi suficiente para representar a diversidade dos dados.", "correta": false, "comentario_da_resposta": "" },
+      { "letra": "D", "texto": "O elemento pertence ao segundo grupo, pois a distância dele para o centroide do segundo grupo é maior que a distância para o centroide do primeiro.", "correta": false, "comentario_da_resposta": "" },
+      { "letra": "E", "texto": "Há um erro na quantidade de repetições executadas para definir os centroides, uma vez que k-means é um algoritmo supervisionado.", "correta": false, "comentario_da_resposta": "" }
+    ]
+  },
+  {
+    "numero_questao": "4",
+    "tema": "Aplicação das técnicas de agrupamento de dados",
+    "enunciado": "Determinar a quantidade ideal de grupos é um passo fundamental para o uso de agrupamento com k-means. Entretanto, esse não é um problema trivial; portanto, não existe uma solução definitiva.\n\nQuais são os métodos considerados para a escolha do número ideal de clusters usado na entrada do algoritmo k-means?",
+    "instrucao": "Selecione a resposta:",
+    "alternativas": [
+      { "letra": "A", "texto": "Análise visual dos grupos e método de elbow.", "correta": true, "comentario_da_resposta": "A análise visual e o método do cotovelo (elbow) são as abordagens usuais para estimar o número ideal de clusters." },
+      { "letra": "B", "texto": "Pré-processamento de dados e análise visual dos grupos.", "correta": false, "comentario_da_resposta": "" },
+      { "letra": "C", "texto": "Método de elbow e pré-processamento de dados.", "correta": false, "comentario_da_resposta": "" },
+      { "letra": "D", "texto": "Pós-processamento e análise visual dos grupos.", "correta": false, "comentario_da_resposta": "" },
+      { "letra": "E", "texto": "Pós-processamento e método de elbow.", "correta": false, "comentario_da_resposta": "" }
+    ]
+  },
+  {
+    "numero_questao": "5",
+    "tema": "Aplicação das técnicas de agrupamento de dados",
+    "enunciado": "K-means é considerado um dos algoritmos de clusterização mais simples. Dada uma quantidade de grupos requisitados, ele determina os membros do grupo a partir de uma combinação entre etapas de cálculo de distância euclidiana e recálculo dos centroides. No R, k-means pode ser executado por meio do método kmeans().\n\n[Contexto do código: base iris copiada em iris_predito, com número máximo de iterações = 15 e total de grupos = 10.]\n\nQual dos códigos a seguir melhor representa um agrupamento de dados usando os valores requisitados?",
+    "instrucao": "Selecione a resposta:",
+    "alternativas": [
+      { "letra": "A", "texto": "kmeans(centers = 10, x = iris_predito, iter.max=15).", "correta": true, "comentario_da_resposta": "Usa corretamente os argumentos da função kmeans() do R: x (dados), centers (nº de grupos) e iter.max (nº máximo de iterações)." },
+      { "letra": "B", "texto": "kmeans(iris_predito, 10, nstart=15).", "correta": false, "comentario_da_resposta": "" },
+      { "letra": "C", "texto": "kmeans(x = iris_predito, nstart=15, 10).", "correta": false, "comentario_da_resposta": "" },
+      { "letra": "D", "texto": "kmeans(iris_predito, k = 10, iter.min=15).", "correta": false, "comentario_da_resposta": "" },
+      { "letra": "E", "texto": "kmeans(x = iris_predito, k = 15, iter =10).", "correta": false, "comentario_da_resposta": "" }
+    ]
+  },
+  {
+    "numero_questao": "6",
+    "tema": "Aprendizagem não supervisionada: agrupamento",
+    "enunciado": "Nem todos os problemas de abordagem não supervisionada são adequados ao uso do algoritmo k-means.\n\nQual das situações abaixo pode ser resolvida com o uso do algoritmo k-means?",
+    "instrucao": "Selecione a resposta:",
+    "alternativas": [
+      { "letra": "A", "texto": "Modelagem a partir de rótulos.", "correta": false, "comentario_da_resposta": "" },
+      { "letra": "B", "texto": "Atributo alvo contínuo.", "correta": false, "comentario_da_resposta": "" },
+      { "letra": "C", "texto": "Busca do mínimo global.", "correta": false, "comentario_da_resposta": "" },
+      { "letra": "D", "texto": "Predominância de outliers.", "correta": false, "comentario_da_resposta": "" },
+      { "letra": "E", "texto": "Dados distribuídos em regiões densas e vazias bem distintas.", "correta": true, "comentario_da_resposta": "O k-means funciona bem quando os dados formam grupos densos e bem separados (esféricos); não lida bem com outliers nem com formas não convexas." }
+    ]
+  },
+  {
+    "numero_questao": "7",
+    "tema": "Aprendizagem não supervisionada: agrupamento",
+    "enunciado": "Observe os gráficos a seguir e a forma como os dados foram classificados. Considerando o que você aprendeu a respeito do algoritmo k-means, qual dos gráficos pode ter sido criado a partir dele?\n\n[Questão baseada em imagens. Descrição dos gráficos:]\nA) 3 grupos (0,1,2) fortemente sobrepostos, sem separação clara.\nB) Dois anéis concêntricos separados por cor (círculos aninhados).\nC) Dois anéis concêntricos separados por cor.\nD) 4 grupos (blobs) densos e bem separados no espaço.\nE) Um anel externo e um núcleo central de cor diferente.",
+    "instrucao": "Selecione a resposta:",
+    "alternativas": [
+      { "letra": "A", "texto": "Gráfico com 3 grupos totalmente sobrepostos.", "correta": false, "comentario_da_resposta": "" },
+      { "letra": "B", "texto": "Gráfico com dois anéis concêntricos.", "correta": false, "comentario_da_resposta": "" },
+      { "letra": "C", "texto": "Gráfico com dois anéis concêntricos.", "correta": false, "comentario_da_resposta": "" },
+      { "letra": "D", "texto": "Gráfico com 4 grupos densos e bem separados (blobs).", "correta": true, "comentario_da_resposta": "O k-means só separa bem grupos convexos e distintos. Formas em anel (círculos/luas) não são separadas corretamente por ele; apenas o gráfico de blobs bem separados poderia ter sido gerado pelo k-means." },
+      { "letra": "E", "texto": "Gráfico com anel externo e núcleo central.", "correta": false, "comentario_da_resposta": "" }
+    ]
+  },
+  {
+    "numero_questao": "8",
+    "tema": "Aprendizagem não supervisionada: agrupamento",
+    "enunciado": "A validação de grupos é passo importante que permite refinar os parâmetros e melhor adequar o algoritmo ao problema. No algoritmo k-means, o parâmetro K deve ser selecionado pelo usuário, mas o método de Elbow auxilia nessa escolha.\n\n[Imagem: gráfico do método Elbow — o somatório das distâncias cai muito forte de K=1 para K=2 e depois se estabiliza, formando o \"cotovelo\" em K=2.]\n\nConsiderando o gráfico, utilize o critério de Elbow para escolher o valor mais recomendado para K.",
+    "instrucao": "Selecione a resposta:",
+    "alternativas": [
+      { "letra": "A", "texto": "1.", "correta": false, "comentario_da_resposta": "" },
+      { "letra": "B", "texto": "2.", "correta": true, "comentario_da_resposta": "O \"cotovelo\" é o ponto após o qual o ganho (queda do somatório das distâncias) fica pequeno. No gráfico, isso ocorre em K=2." },
+      { "letra": "C", "texto": "2,5.", "correta": false, "comentario_da_resposta": "" },
+      { "letra": "D", "texto": "3.", "correta": false, "comentario_da_resposta": "" },
+      { "letra": "E", "texto": "4.", "correta": false, "comentario_da_resposta": "" }
+    ]
+  },
+  {
+    "numero_questao": "9",
+    "tema": "Aprendizagem não supervisionada: agrupamento",
+    "enunciado": "Considerando os valores de centroide dos cinco grupos da tabela abaixo, determine a qual cluster deve ser atribuído o ponto P (1,5, 0,5). Considere a distância euclidiana como parâmetro.\n\nCluster 1: X=0,2  Y=1\nCluster 2: X=1    Y=0,5\nCluster 3: X=0,3  Y=1,5\nCluster 4: X=2    Y=0,8\nCluster 5: X=1,2  Y=1,3",
+    "instrucao": "Selecione a resposta:",
+    "alternativas": [
+      { "letra": "A", "texto": "Cluster 1.", "correta": false, "comentario_da_resposta": "" },
+      { "letra": "B", "texto": "Cluster 2.", "correta": true, "comentario_da_resposta": "A distância euclidiana de P(1,5;0,5) ao centroide do Cluster 2 (1;0,5) é a menor (0,5), portanto P pertence ao Cluster 2." },
+      { "letra": "C", "texto": "Cluster 3.", "correta": false, "comentario_da_resposta": "" },
+      { "letra": "D", "texto": "Cluster 4.", "correta": false, "comentario_da_resposta": "" },
+      { "letra": "E", "texto": "Cluster 5.", "correta": false, "comentario_da_resposta": "" }
+    ]
+  },
+  {
+    "numero_questao": "10",
+    "tema": "Aprendizagem não supervisionada: agrupamento",
+    "enunciado": "A tabela apresenta a posição dos pares de instâncias e o cluster a que pertencem, além da matriz de distâncias entre as instâncias.\n\nConsiderando as informações, determine, segundo o critério da silhueta, as instâncias que estão melhor e pior agrupadas.",
+    "instrucao": "Selecione a resposta:",
+    "alternativas": [
+      { "letra": "A", "texto": "Melhor: instância 1 do cluster 1 (C1O1). Pior: instância 1 do cluster 2 (C2O1).", "correta": true, "comentario_da_resposta": "Pelo critério da silhueta, a instância melhor agrupada tem alta coesão interna e boa separação (C1O1), e a pior tem baixo valor de silhueta (C2O1)." },
+      { "letra": "B", "texto": "Melhor: instância 1 do cluster 2 (C2O1). Pior: instância 1 do cluster 1 (C1O1).", "correta": false, "comentario_da_resposta": "" },
+      { "letra": "C", "texto": "Melhor: instância 1 do cluster 4 (C4O1). Pior: instância 1 do cluster 5 (C5O1).", "correta": false, "comentario_da_resposta": "" },
+      { "letra": "D", "texto": "Melhor: instância 2 do cluster 4 (C4O2). Pior: instância 2 do cluster 5 (C5O2).", "correta": false, "comentario_da_resposta": "" },
+      { "letra": "E", "texto": "Melhor: instância 1 do cluster 5 (C5O1). Pior: instância 1 do cluster 4 (C4O1).", "correta": false, "comentario_da_resposta": "" }
+    ]
+  },
+  {
+    "numero_questao": "11",
+    "tema": "Aprendizagem não supervisionada: aplicação do k-means",
+    "enunciado": "Muitas vezes apenas a visualização da distribuição dos dados é suficiente para iniciar as investigações em aprendizado de máquina não supervisionado.\n\n[Imagem: matriz de dispersão (pairplot) dos atributos A, B, C e D plotados aos pares.]\n\nConsiderando a distribuição segundo os atributos A, B, C e D plotados aos pares, utilizando um algoritmo de k-means, qual das alternativas apresenta o par de atributos que, se utilizado, resultará em um agrupamento que terá maiores chances de encontrar clusters similares ao conjunto de dados original?",
+    "instrucao": "Selecione a resposta:",
+    "alternativas": [
+      { "letra": "A", "texto": "C e D.", "correta": true, "comentario_da_resposta": "O par de atributos C e D é o que apresenta os grupos mais separados e bem definidos no pairplot, favorecendo o agrupamento pelo k-means." },
+      { "letra": "B", "texto": "B e C.", "correta": false, "comentario_da_resposta": "" },
+      { "letra": "C", "texto": "A e B.", "correta": false, "comentario_da_resposta": "" },
+      { "letra": "D", "texto": "A e D.", "correta": false, "comentario_da_resposta": "" },
+      { "letra": "E", "texto": "B e D.", "correta": false, "comentario_da_resposta": "" }
+    ]
+  },
+  {
+    "numero_questao": "12",
+    "tema": "Aprendizagem não supervisionada: aplicação do k-means",
+    "enunciado": "O aprendizado não supervisionado descreve o conjunto de dados a partir de características intrínsecas a ele devido à falta de atributos-alvo.\n\nNesses casos, qual métrica pode ser usada para avaliar o desempenho em tarefas de agrupamento?",
+    "instrucao": "Selecione a resposta:",
+    "alternativas": [
+      { "letra": "A", "texto": "Silhueta.", "correta": true, "comentario_da_resposta": "A silhueta mede coesão e separação dos grupos sem precisar de rótulos, sendo adequada para avaliar agrupamento (não supervisionado)." },
+      { "letra": "B", "texto": "Matriz de confusão.", "correta": false, "comentario_da_resposta": "" },
+      { "letra": "C", "texto": "Erro quadrático médio.", "correta": false, "comentario_da_resposta": "" },
+      { "letra": "D", "texto": "F-measure.", "correta": false, "comentario_da_resposta": "" },
+      { "letra": "E", "texto": "Data frames.", "correta": false, "comentario_da_resposta": "" }
+    ]
+  },
+  {
+    "numero_questao": "13",
+    "tema": "Aprendizagem não supervisionada: aplicação do k-means",
+    "enunciado": "Dados os valores de silhueta e índice de Calinski-Harabasz, qual dos agrupamentos tem maior probabilidade de ter encontrado grupos válidos?",
+    "instrucao": "Selecione a resposta:",
+    "alternativas": [
+      { "letra": "A", "texto": "Silhueta: -1. Calinski-Harabasz: 100.", "correta": false, "comentario_da_resposta": "" },
+      { "letra": "B", "texto": "Silhueta: 0. Calinski-Harabasz: 50.", "correta": false, "comentario_da_resposta": "" },
+      { "letra": "C", "texto": "Silhueta: 0,5. Calinski-Harabasz: 1.000.", "correta": false, "comentario_da_resposta": "" },
+      { "letra": "D", "texto": "Silhueta: 0,7. Calinski-Harabasz: 1.500.", "correta": true, "comentario_da_resposta": "Quanto maiores a silhueta (mais próxima de 1) e o índice de Calinski-Harabasz, melhores os grupos. O par 0,7 / 1.500 é o mais alto." },
+      { "letra": "E", "texto": "Silhueta: 0,75. Calinski-Harabasz: 500.", "correta": false, "comentario_da_resposta": "" }
+    ]
+  },
+  {
+    "numero_questao": "14",
+    "tema": "Aprendizagem não supervisionada: aplicação do k-means",
+    "enunciado": "Assinale a linha de código que cria um objeto do algoritmo de k-means configurado para:\n1. utilizar todos os 16 núcleos de processamento disponíveis;\n2. reduzir a quantidade de cálculo necessário para determinar a distância entre as instâncias;\n3. reduzir a quantidade de iterações necessárias para convergir.",
+    "instrucao": "Selecione a resposta:",
+    "alternativas": [
+      { "letra": "A", "texto": "KMeans(3, n_jobs=-1, algorithm='elkan').", "correta": true, "comentario_da_resposta": "n_jobs=-1 usa todos os núcleos; o algorithm='elkan' reduz o número de cálculos de distância e ajuda a convergir mais rápido." },
+      { "letra": "B", "texto": "KMeans(3, init='random', max_iter=10, algorithm='full').", "correta": false, "comentario_da_resposta": "" },
+      { "letra": "C", "texto": "KMeans(3, init='random', max_iter=1, n_jobs=16, algorithm='full').", "correta": false, "comentario_da_resposta": "" },
+      { "letra": "D", "texto": "KMeans(3, init='k-means++', max_iter=1, n_jobs=1, algorithm='full').", "correta": false, "comentario_da_resposta": "" },
+      { "letra": "E", "texto": "KMeans(3, n_jobs=-1, algorithm='full').", "correta": false, "comentario_da_resposta": "" }
+    ]
+  },
+  {
+    "numero_questao": "15",
+    "tema": "Aprendizagem não supervisionada: aplicação do k-means",
+    "enunciado": "Implemente o código abaixo e utilize os dados de cada conjunto X,y para treinar um algoritmo de k-means e avaliar qual é o valor aproximado do índice de Calinski-Harabasz e qual conjunto de dados apresenta o melhor índice.\n\nX1..X4 = make_blobs(n_samples=200, n_features=4, centers=4, cluster_std=2, random_state=150/250/350/450)",
+    "instrucao": "Selecione a resposta:",
+    "alternativas": [
+      { "letra": "A", "texto": "Conjunto de dados X1 com índice de 594,65.", "correta": true, "comentario_da_resposta": "O conjunto X1 (random_state=150) apresenta o maior índice de Calinski-Harabasz (~594,65), indicando o melhor agrupamento." },
+      { "letra": "B", "texto": "Conjunto de dados X2, com índice de 768,57.", "correta": false, "comentario_da_resposta": "" },
+      { "letra": "C", "texto": "Conjunto de dados X3 com índice de 857,13.", "correta": false, "comentario_da_resposta": "" },
+      { "letra": "D", "texto": "Conjunto de dados X3 com índice de 279,68.", "correta": false, "comentario_da_resposta": "" },
+      { "letra": "E", "texto": "Conjunto de dados X4 com índice de 303,51.", "correta": false, "comentario_da_resposta": "" }
+    ]
+  },
+  {
+    "numero_questao": "16",
+    "tema": "Regras de associação",
+    "enunciado": "Considerando que os algoritmos têm características distintas, veja a descrição do algoritmo Frequent-Pattern Growth (FP-Growth): trata-se de um algoritmo de regras de associação, fundamentado em uma estrutura de árvore de prefixos para padrões recorrentes, apropriado para armazenar informações de forma compactada, possibilitando uma mineração eficaz por não necessitar acessos repetitivos à base de dados.\n\nIndique quantas vezes é necessário que o algoritmo FP-Growth acesse a base de dados.",
+    "instrucao": "Selecione a resposta:",
+    "alternativas": [
+      { "letra": "A", "texto": "1 vez.", "correta": false, "comentario_da_resposta": "" },
+      { "letra": "B", "texto": "2 vezes.", "correta": true, "comentario_da_resposta": "O FP-Growth acessa a base apenas 2 vezes: uma para contar a frequência dos itens e outra para construir a FP-Tree." },
+      { "letra": "C", "texto": "3 vezes.", "correta": false, "comentario_da_resposta": "" },
+      { "letra": "D", "texto": "4 vezes.", "correta": false, "comentario_da_resposta": "" },
+      { "letra": "E", "texto": "5 vezes.", "correta": false, "comentario_da_resposta": "" }
+    ]
+  },
+  {
+    "numero_questao": "17",
+    "tema": "Regras de associação",
+    "enunciado": "Existem vários algoritmos da técnica de associação, com características e desempenhos diferentes, todos desenvolvidos para determinar como os dados se associam em uma base.\n\nDentre os algoritmos apresentados, aponte o único que NÃO gera regras de associação:",
+    "instrucao": "Selecione a resposta:",
+    "alternativas": [
+      { "letra": "A", "texto": "MiRABIT.", "correta": false, "comentario_da_resposta": "" },
+      { "letra": "B", "texto": "Partition.", "correta": false, "comentario_da_resposta": "" },
+      { "letra": "C", "texto": "Dense-Miner.", "correta": false, "comentario_da_resposta": "" },
+      { "letra": "D", "texto": "Apriori.", "correta": false, "comentario_da_resposta": "" },
+      { "letra": "E", "texto": "Árvores de decisão.", "correta": true, "comentario_da_resposta": "Árvores de decisão são um algoritmo de classificação (supervisionado), e não de regras de associação." }
+    ]
+  },
+  {
+    "numero_questao": "18",
+    "tema": "Regras de associação",
+    "enunciado": "O suporte representa a porcentagem de transações em que aparecem os itens da regra; a confiança representa, entre as transações com o antecedente, a porcentagem que também contém o consequente; e o lift indica o quanto o consequente se torna mais provável quando ocorre o antecedente.\n\n[Base com 10 transações contendo itens como leite, cerveja, fraldas, pão, manteiga e bolachas.]\n\nIndique suporte, confiança e lift, respectivamente, para a regra (Cerveja → Fraldas):",
+    "instrucao": "Selecione a resposta:",
+    "alternativas": [
+      { "letra": "A", "texto": "0,1 - 0,75 - 0,38.", "correta": false, "comentario_da_resposta": "" },
+      { "letra": "B", "texto": "0,2 - 0,75 - 0,40.", "correta": false, "comentario_da_resposta": "" },
+      { "letra": "C", "texto": "0,3 - 0,75 - 1,45.", "correta": true, "comentario_da_resposta": "Cerveja aparece em 4 transações, 3 delas com fraldas: suporte = 3/10 = 0,3; confiança = 3/4 = 0,75; lift = 0,75 / (suporte de fraldas) ≈ 1,45." },
+      { "letra": "D", "texto": "0,4 - 0,75 - 0,44.", "correta": false, "comentario_da_resposta": "" },
+      { "letra": "E", "texto": "0,5 - 0,70 - 0,46.", "correta": false, "comentario_da_resposta": "" }
+    ]
+  },
+  {
+    "numero_questao": "19",
+    "tema": "Regras de associação",
+    "enunciado": "Para realizar a mineração de regras de associação em uma base de dados, é necessária a realização de algumas atividades. Precisamente, são quatro atividades fundamentais.\n\nIndique qual das atividades a seguir faz parte das atividades necessárias para a realização de regras de associação:",
+    "instrucao": "Selecione a resposta:",
+    "alternativas": [
+      { "letra": "A", "texto": "Entendimento do negócio.", "correta": false, "comentario_da_resposta": "" },
+      { "letra": "B", "texto": "Entendimento dos dados.", "correta": false, "comentario_da_resposta": "" },
+      { "letra": "C", "texto": "Mineração das regras.", "correta": true, "comentario_da_resposta": "A mineração das regras é uma das quatro atividades fundamentais do processo de geração de regras de associação." },
+      { "letra": "D", "texto": "Modelagem.", "correta": false, "comentario_da_resposta": "" },
+      { "letra": "E", "texto": "Implementação do modelo.", "correta": false, "comentario_da_resposta": "" }
+    ]
+  },
+  {
+    "numero_questao": "20",
+    "tema": "Regras de associação",
+    "enunciado": "O algoritmo Apriori é o primeiro e um dos mais conhecidos para mineração por regras de associação. A partir do Apriori, foram desenvolvidos outros algoritmos que também geram regras de associação.\n\nAponte o algoritmo que foi desenvolvido tendo como base o Apriori:",
+    "instrucao": "Selecione a resposta:",
+    "alternativas": [
+      { "letra": "A", "texto": "OneR.", "correta": false, "comentario_da_resposta": "" },
+      { "letra": "B", "texto": "JRip.", "correta": false, "comentario_da_resposta": "" },
+      { "letra": "C", "texto": "Eclat.", "correta": true, "comentario_da_resposta": "O Eclat é um algoritmo de regras de associação derivado do Apriori (OneR e JRip são classificadores)." },
+      { "letra": "D", "texto": "Canopy.", "correta": false, "comentario_da_resposta": "" },
+      { "letra": "E", "texto": "K-Means.", "correta": false, "comentario_da_resposta": "" }
+    ]
+  },
+  {
+    "numero_questao": "21",
+    "tema": "Aprendizagem supervisionada: aplicação do kNN",
+    "enunciado": "Diferentes métricas de distanciamento podem ser utilizadas como referência para o algoritmo kNN.\n\n[Imagem: mapa de uma cidade com ruas em grade/quarteirões.]\n\nUm aplicativo que pretenda descobrir e avaliar rotas em mapas com essa estrutura (ruas em grade) teria maior sucesso com qual métrica de distanciamento?",
+    "instrucao": "Selecione a resposta:",
+    "alternativas": [
+      { "letra": "A", "texto": "Distância euclidiana.", "correta": false, "comentario_da_resposta": "" },
+      { "letra": "B", "texto": "Distância de Manhattan.", "correta": true, "comentario_da_resposta": "Em mapas com ruas em grade, o deslocamento ocorre em blocos (horizontal/vertical); a distância de Manhattan modela exatamente esse tipo de percurso." },
+      { "letra": "C", "texto": "Distância de Chebyshev.", "correta": false, "comentario_da_resposta": "" },
+      { "letra": "D", "texto": "Distância uniforme.", "correta": false, "comentario_da_resposta": "" },
+      { "letra": "E", "texto": "Não afetaria o processo de aprendizado.", "correta": false, "comentario_da_resposta": "" }
+    ]
+  },
+  {
+    "numero_questao": "22",
+    "tema": "Aprendizagem supervisionada: aplicação do kNN",
+    "enunciado": "A parametrização mais adequada para um modelo de aprendizado de máquina normalmente só pode ser encontrada após o treinamento e o teste. No entanto, alguns indicativos podem sugerir melhores parametrizações.\n\nQual parâmetro do método KNeighborsClassifier pode reduzir o impacto de diferenças de amplitude entre atributos previsores?",
+    "instrucao": "Selecione a resposta:",
+    "alternativas": [
+      { "letra": "A", "texto": "weights='uniform'.", "correta": false, "comentario_da_resposta": "" },
+      { "letra": "B", "texto": "weights='distance'.", "correta": true, "comentario_da_resposta": "Com weights='distance', vizinhos mais próximos têm maior peso na decisão, reduzindo o impacto de diferenças de amplitude entre atributos." },
+      { "letra": "C", "texto": "Valor maior de n_neighbors.", "correta": false, "comentario_da_resposta": "" },
+      { "letra": "D", "texto": "Valor menor de n_neighbors.", "correta": false, "comentario_da_resposta": "" },
+      { "letra": "E", "texto": "Métrica de distanciamento adequada.", "correta": false, "comentario_da_resposta": "" }
+    ]
+  },
+  {
+    "numero_questao": "23",
+    "tema": "Aprendizagem supervisionada: aplicação do kNN",
+    "enunciado": "O Scikit-Learn oferece métodos que facilitam o uso de algoritmos kNN, mas deve-se atentar para a correta utilização dos parâmetros.\n\nQual dos algoritmos a seguir carrega o conjunto de dados Íris do Scikit-Learn, treina um algoritmo kNN e testa a acurácia do conjunto sem problemas?",
+    "instrucao": "Selecione a resposta:",
+    "alternativas": [
+      { "letra": "A", "texto": "... X, y = load_iris(True); knn = KNeighborsClassifier(n_neighbors=5, n_jobs=-1, weights='uniform'); knn.fit(X, y); yy = knn.predict(X); accuracy_score(y, yy)", "correta": true, "comentario_da_resposta": "Importa accuracy_score, treina com fit(X, y), prevê com predict(X) e avalia corretamente com accuracy_score(y, yy)." },
+      { "letra": "B", "texto": "... (sem importar accuracy_score) ... accuracy_score(y, yy)", "correta": false, "comentario_da_resposta": "" },
+      { "letra": "C", "texto": "... knn.fit(X, y); yy = knn.predict(X); accuracy_score(X, y)", "correta": false, "comentario_da_resposta": "" },
+      { "letra": "D", "texto": "... yy = knn.predict(X, y); accuracy_score(y, yy)", "correta": false, "comentario_da_resposta": "" },
+      { "letra": "E", "texto": "... knn.predict(X); accuracy_score(X, y)", "correta": false, "comentario_da_resposta": "" }
+    ]
+  },
+  {
+    "numero_questao": "24",
+    "tema": "Aprendizagem supervisionada: aplicação do kNN",
+    "enunciado": "Parte considerável do trabalho na construção de algoritmos de ML envolve avaliar o desempenho em diferentes parametrizações.\n\nQual dos algoritmos a seguir retorna, após treinamento e testes, o resultado de um modelo kNN melhor parametrizado com base nos valores da acurácia?",
+    "instrucao": "Selecione a resposta:",
+    "alternativas": [
+      { "letra": "A", "texto": "... for n in range(1, 21): knn = KNeighborsClassifier(n_neighbors=n); knn.fit(X, y); yy = knn.predict(X); params.append(accuracy_score(y, yy)); knn = KNeighborsClassifier(n_neighbors=params.index(max(params))+1)", "correta": true, "comentario_da_resposta": "Percorre n de 1 a 20, guarda as acurácias com params.append() e escolhe o n de maior acurácia com params.index(max(params))+1." },
+      { "letra": "B", "texto": "... params = accuracy_score(y, yy) ... (sobrescreve a lista)", "correta": false, "comentario_da_resposta": "" },
+      { "letra": "C", "texto": "... KNeighborsClassifier(n_neighbors=range(1, 21)) ...", "correta": false, "comentario_da_resposta": "" },
+      { "letra": "D", "texto": "... KNeighborsClassifier(n_neighbors=max(params))", "correta": false, "comentario_da_resposta": "" },
+      { "letra": "E", "texto": "... params.append(accuracy_score(y, knn.predict(X))) ... n_neighbors=max(params)", "correta": false, "comentario_da_resposta": "" }
+    ]
+  },
+  {
+    "numero_questao": "25",
+    "tema": "Aprendizagem supervisionada: aplicação do kNN",
+    "enunciado": "Para reduzir o risco de superadaptação e melhorar o desempenho de um modelo treinado, pode-se recorrer a técnicas de amostragem e métricas de avaliação.\n\nQual dos algoritmos a seguir implementa a amostragem hold-out corretamente e apresenta a matriz de confusão?",
+    "instrucao": "Selecione a resposta:",
+    "alternativas": [
+      { "letra": "A", "texto": "... X_treino, X_teste, y_treino, y_teste = train_test_split(X, y, test_size=0.2); knn = KNeighborsClassifier(n_neighbors=5); knn.fit(X_treino, y_treino); yy = knn.predict(X_teste); confusion_matrix(y_teste, yy)", "correta": true, "comentario_da_resposta": "Divide os dados com train_test_split(X, y), treina no treino, prevê no teste e compara y_teste com yy na matriz de confusão — hold-out correto." },
+      { "letra": "B", "texto": "... train_test_split(test_size=0.2) ... (sem passar X, y)", "correta": false, "comentario_da_resposta": "" },
+      { "letra": "C", "texto": "... knn.fit(X, y) ... (treina no conjunto todo)", "correta": false, "comentario_da_resposta": "" },
+      { "letra": "D", "texto": "... confusion_matrix(y, yy) (usa y em vez de y_teste)", "correta": false, "comentario_da_resposta": "" },
+      { "letra": "E", "texto": "... yy = knn.predict(X) (prevê no conjunto todo)", "correta": false, "comentario_da_resposta": "" }
+    ]
+  },
+  {
+    "numero_questao": "26",
+    "tema": "Aprendizagem supervisionada: redes neurais artificiais",
+    "enunciado": "A definição da arquitetura de uma RNA tem grande influência na taxa de acerto de suas predições.\n\nDado um conjunto de dados com 10 entradas, que precisam ser classificados em duas classes, marque a opção que determina o número de neurônios que deveria ser utilizado na camada oculta.",
+    "instrucao": "Selecione a resposta:",
+    "alternativas": [
+      { "letra": "A", "texto": "20.", "correta": false, "comentario_da_resposta": "" },
+      { "letra": "B", "texto": "2.", "correta": false, "comentario_da_resposta": "" },
+      { "letra": "C", "texto": "12.", "correta": false, "comentario_da_resposta": "" },
+      { "letra": "D", "texto": "6.", "correta": true, "comentario_da_resposta": "Uma heurística comum estima os neurônios da camada oculta pela média entre entradas e saídas: (10 + 2) / 2 = 6." },
+      { "letra": "E", "texto": "1.", "correta": false, "comentario_da_resposta": "" }
+    ]
+  },
+  {
+    "numero_questao": "27",
+    "tema": "Aprendizagem supervisionada: redes neurais artificiais",
+    "enunciado": "A escolha da arquitetura geralmente acontece por meio de um processo de busca exaustiva entre possíveis arquiteturas.\n\nMarque a opção que representa a configuração da RNA que deve ter seu valor aumentado à medida que se diminui a taxa de aprendizagem no processo de busca de melhor configuração.",
+    "instrucao": "Selecione a resposta:",
+    "alternativas": [
+      { "letra": "A", "texto": "Épocas.", "correta": true, "comentario_da_resposta": "Com uma taxa de aprendizagem menor, cada ajuste é pequeno, então é preciso aumentar o número de épocas para a rede convergir." },
+      { "letra": "B", "texto": "Taxa de erro.", "correta": false, "comentario_da_resposta": "" },
+      { "letra": "C", "texto": "Ativação.", "correta": false, "comentario_da_resposta": "" },
+      { "letra": "D", "texto": "Momentum.", "correta": false, "comentario_da_resposta": "" },
+      { "letra": "E", "texto": "Predição.", "correta": false, "comentario_da_resposta": "" }
+    ]
+  },
+  {
+    "numero_questao": "28",
+    "tema": "Aprendizagem supervisionada: redes neurais artificiais",
+    "enunciado": "Para escolher uma entre diferentes arquiteturas de RNAs possíveis, é necessário avaliar os resultados de treinamento, comparando-as a critérios de avaliação.\n\nMarque a opção que representa o principal critério utilizado para avaliação da melhor arquitetura entre as arquiteturas testadas.",
+    "instrucao": "Selecione a resposta:",
+    "alternativas": [
+      { "letra": "A", "texto": "Tempo da predição.", "correta": false, "comentario_da_resposta": "" },
+      { "letra": "B", "texto": "Taxa de aprendizado.", "correta": false, "comentario_da_resposta": "" },
+      { "letra": "C", "texto": "Esforço preditivo.", "correta": false, "comentario_da_resposta": "" },
+      { "letra": "D", "texto": "Peso do neurônio.", "correta": false, "comentario_da_resposta": "" },
+      { "letra": "E", "texto": "Acurácia preditiva.", "correta": true, "comentario_da_resposta": "A acurácia preditiva é o principal critério para comparar e escolher a melhor arquitetura de rede." }
+    ]
+  },
+  {
+    "numero_questao": "29",
+    "tema": "Aprendizagem supervisionada: redes neurais artificiais",
+    "enunciado": "O algoritmo backpropagation realiza a iteração entre duas fases, uma para cálculo dos valores de saída e outra para ajustar a rede.\n\nDado o trecho de algoritmo que, para cada camada a partir da camada de saída, ajusta o peso de cada neurônio com base no seu erro — marque a opção que representa o nome dessa fase do algoritmo.",
+    "instrucao": "Selecione a resposta:",
+    "alternativas": [
+      { "letra": "A", "texto": "Overfitting.", "correta": false, "comentario_da_resposta": "" },
+      { "letra": "B", "texto": "Foward.", "correta": false, "comentario_da_resposta": "" },
+      { "letra": "C", "texto": "Backward.", "correta": true, "comentario_da_resposta": "Ajustar os pesos da camada de saída em direção à entrada, com base no erro, é a fase backward (retropropagação) do algoritmo." },
+      { "letra": "D", "texto": "Momentum.", "correta": false, "comentario_da_resposta": "" },
+      { "letra": "E", "texto": "Underfitting.", "correta": false, "comentario_da_resposta": "" }
+    ]
+  },
+  {
+    "numero_questao": "30",
+    "tema": "Aprendizagem supervisionada: redes neurais artificiais",
+    "enunciado": "O processo de treinamento de uma RNA pode ser dividido em diferentes tipos de aprendizagem.\n\nMarque a opção que representa o processo de aprendizagem supervisionado.",
+    "instrucao": "Selecione a resposta:",
+    "alternativas": [
+      { "letra": "A", "texto": "Sem saída esperada, dados de entrada são fornecidos e a rede se rearranja até obter uma saída satisfatória.", "correta": false, "comentario_da_resposta": "" },
+      { "letra": "B", "texto": "Pesos são adaptados por meio do fornecimento das respostas esperadas pelas saídas dos neurônios.", "correta": true, "comentario_da_resposta": "Na aprendizagem supervisionada, a rede recebe as saídas esperadas (rótulos) e ajusta os pesos comparando a saída obtida com a esperada." },
+      { "letra": "C", "texto": "Mesmo com apresentação dos resultados esperados, a rede não tem parâmetros de como proceder.", "correta": false, "comentario_da_resposta": "" },
+      { "letra": "D", "texto": "Com apenas parte das respostas esperadas, a rede aprende a gerar saídas com dados rotulados e não rotulados.", "correta": false, "comentario_da_resposta": "" },
+      { "letra": "E", "texto": "Níveis de prioridades são aplicados às entradas de forma a permitir que a rede aprenda apenas com dados críticos.", "correta": false, "comentario_da_resposta": "" }
+    ]
+  },
+  {
+    "numero_questao": "31",
+    "tema": "Aprendizagem supervisionada: aplicação da perceptron multicamadas",
+    "enunciado": "O processo de treinamento do modelo é uma das etapas da aprendizagem de máquina.\n\nMarque a opção que representa a característica correta a respeito da taxa de aprendizagem.",
+    "instrucao": "Selecione a resposta:",
+    "alternativas": [
+      { "letra": "A", "texto": "Quanto menor for a taxa de aprendizagem, maior será a necessidade do termo momentum.", "correta": false, "comentario_da_resposta": "" },
+      { "letra": "B", "texto": "Quanto maior for a taxa de aprendizagem, menor será a instabilidade da rede neural.", "correta": false, "comentario_da_resposta": "" },
+      { "letra": "C", "texto": "Quanto maior for a taxa de aprendizagem, maiores serão as mudanças nos pesos sinápticos.", "correta": false, "comentario_da_resposta": "" },
+      { "letra": "D", "texto": "Quanto menor for a taxa de aprendizagem, mais suave será a trajetória no espaço de pesos.", "correta": true, "comentario_da_resposta": "Uma taxa de aprendizagem menor produz ajustes pequenos nos pesos, tornando a trajetória de convergência mais suave no espaço de pesos." },
+      { "letra": "E", "texto": "Quanto menor for a taxa de aprendizagem, menos épocas serão necessárias no treinamento.", "correta": false, "comentario_da_resposta": "" }
+    ]
+  },
+  {
+    "numero_questao": "32",
+    "tema": "Aprendizagem supervisionada: aplicação da perceptron multicamadas",
+    "enunciado": "Durante o desenvolvimento de um sistema de aprendizagem supervisionada, é necessário avaliar os resultados da RNA ao longo das iterações de treinamento.\n\nMarque a opção que representa a constante que determina o efeito das mudanças passadas dos pesos na direção atual do movimento no espaço de pesos.",
+    "instrucao": "Selecione a resposta:",
+    "alternativas": [
+      { "letra": "A", "texto": "solver.", "correta": false, "comentario_da_resposta": "" },
+      { "letra": "B", "texto": "momentum.", "correta": true, "comentario_da_resposta": "O momentum incorpora a influência das atualizações de peso anteriores na direção atual, acelerando a convergência e reduzindo oscilações." },
+      { "letra": "C", "texto": "learning_rate.", "correta": false, "comentario_da_resposta": "" },
+      { "letra": "D", "texto": "MLPClassifier.", "correta": false, "comentario_da_resposta": "" },
+      { "letra": "E", "texto": "verbose.", "correta": false, "comentario_da_resposta": "" }
+    ]
+  },
+  {
+    "numero_questao": "33",
+    "tema": "Aprendizagem supervisionada: aplicação da perceptron multicamadas",
+    "enunciado": "A acurácia de um modelo é medida pelo número total de predições corretas dividido pelo número total de predições.\n\nQuais parâmetros podem ser ajustados visando a conseguir acurácia melhor?",
+    "instrucao": "Selecione a resposta:",
+    "alternativas": [
+      { "letra": "A", "texto": "Número de épocas e valor de saída.", "correta": false, "comentario_da_resposta": "" },
+      { "letra": "B", "texto": "Taxa de aprendizado e taxa de erro.", "correta": false, "comentario_da_resposta": "" },
+      { "letra": "C", "texto": "Taxa de aprendizado e classificação.", "correta": false, "comentario_da_resposta": "" },
+      { "letra": "D", "texto": "Taxa de erro e classificação.", "correta": false, "comentario_da_resposta": "" },
+      { "letra": "E", "texto": "Taxa de aprendizado e número de épocas.", "correta": true, "comentario_da_resposta": "Taxa de aprendizado e número de épocas são hiperparâmetros ajustáveis que impactam diretamente a acurácia (valor de saída, erro e classificação são resultados, não parâmetros)." }
+    ]
+  },
+  {
+    "numero_questao": "34",
+    "tema": "Aprendizagem supervisionada: aplicação da perceptron multicamadas",
+    "enunciado": "Um dos problemas que pode acontecer em uma rede tem relação com os dados estarem muito adaptados à classe de treinamento, tendo boa precisão para os dados de treinamento, mas não para os demais dados (superadaptação/overfitting).\n\nMarque a opção que representa como esse problema pode ser resolvido.",
+    "instrucao": "Selecione a resposta:",
+    "alternativas": [
+      { "letra": "A", "texto": "Parar de treinar a rede no momento em que a precisão da rede parar de melhorar.", "correta": true, "comentario_da_resposta": "É a técnica de early stopping: interromper o treinamento quando a precisão de validação deixa de melhorar evita o overfitting." },
+      { "letra": "B", "texto": "Parar de treinar a rede quando o custo nos dados de teste começa a melhorar.", "correta": false, "comentario_da_resposta": "" },
+      { "letra": "C", "texto": "Treinar a rede até a precisão alcançar um valor adequado para os dados de treinamento.", "correta": false, "comentario_da_resposta": "" },
+      { "letra": "D", "texto": "Parar de treinar a rede quando detectar uma predição com erro muito grande.", "correta": false, "comentario_da_resposta": "" },
+      { "letra": "E", "texto": "Treinar a rede até que a taxa de erro seja maior do que o máximo aceitável.", "correta": false, "comentario_da_resposta": "" }
+    ]
+  },
+  {
+    "numero_questao": "35",
+    "tema": "Aprendizagem supervisionada: aplicação da perceptron multicamadas",
+    "enunciado": "A validação cruzada divide o conjunto de treinamento em n partes, sendo uma delas para testes, com processo que se repete n vezes.\n\nComo é o nome da variação em que esse processo acontece apenas uma vez?",
+    "instrucao": "Selecione a resposta:",
+    "alternativas": [
+      { "letra": "A", "texto": "Validação cruzada n-fold.", "correta": false, "comentario_da_resposta": "" },
+      { "letra": "B", "texto": "Validação cruzada de uma deleção.", "correta": false, "comentario_da_resposta": "" },
+      { "letra": "C", "texto": "Validação cruzada de exclusão única.", "correta": true, "comentario_da_resposta": "Quando a divisão treino/teste ocorre uma única vez (hold-out), tem-se a validação cruzada de exclusão única." },
+      { "letra": "D", "texto": "Validação cruzada hold-out temporal.", "correta": false, "comentario_da_resposta": "" },
+      { "letra": "E", "texto": "Validação cruzada hold-out atemporal.", "correta": false, "comentario_da_resposta": "" }
+    ]
+  }
+]
